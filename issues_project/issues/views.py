@@ -6,6 +6,12 @@ from .lib.utils import getIssuesCount
 import datetime
 from django.utils import timezone
 
+'''
+Returns the required json data about Issues.
+Need to have GITHUB_TOKEN variable set to use this function.
+To get github token follow: https://help.github.com/articles/creating-an-access-token-for-command-line-use/
+'''
+
 
 def fetchData(gitUtil):
     totalIssuesCount = gitUtil.getTotalIssuesCount()
