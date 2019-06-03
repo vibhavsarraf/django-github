@@ -26,11 +26,11 @@ def fetchData(gitUtil):
     issues24HoursTo7Days = getIssuesCount(issues,
                                           prev7DaysTime,
                                           prev24HourTime)
-    data['24HoursTo7Days'] = issues24HoursTo7Days
+    data['In24HoursTo7Days'] = issues24HoursTo7Days
     issuesAfter7Days = totalIssuesCount - getIssuesCount(issues,
                                                          prev7DaysTime,
                                                          curTime)
-    data['after7Days'] = issuesAfter7Days
+    data['before7Days'] = issuesAfter7Days
     return data
 
 
