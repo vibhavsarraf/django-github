@@ -12,6 +12,7 @@ rope = "*"
 django = "*"
 gunicorn = "*"
 requests = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
