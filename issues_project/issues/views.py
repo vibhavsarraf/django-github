@@ -41,9 +41,9 @@ Return data about issues for a github repository.
 
 
 def issuesAPI(request):
-    # try:
-    data = request.body.decode('utf-8')
-    gitUtil = GithubUtility(**json.loads(data))
-    return JsonResponse(fetchData(gitUtil))
-    # except Exception as e:
-    # return JsonResponse({'error': str(e)})
+    try:
+        data = request.body.decode('utf-8')
+        gitUtil = GithubUtility(**json.loads(data))
+        return JsonResponse(fetchData(gitUtil))
+    except Exception as e:
+        return JsonResponse({'error': str(e)})

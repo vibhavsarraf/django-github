@@ -10,27 +10,32 @@ class App extends Component {
     last24Hours: 0,
     In24HoursTo7Days: 0,
     before7Days: 0,
-    isLoading: false
+    isLoading: false,
+    error: null
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   onSubmit = e => {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, error: null });
     e.preventDefault();
     const { url } = this.state;
     axios
       .post("http://localhost:8000/issues/api/", { url })
-      .then(response => response.data)
-      .then(data =>
-        this.setState({
+      .then(response => {
+        if (response.status === 500) throw new Error("API Error");
+        let data = response.data;
+        if (data.error) throw new Error("Improper Request. Check Git Url.");
+        const newState = {
           isLoading: false,
           totalOpenIssues: data.total,
           In24HoursTo7Days: data.In24HoursTo7Days,
           last24Hours: data.last24Hours,
           before7Days: data.before7Days
-        })
-      );
-    // .catch()
+        };
+        return newState;
+      })
+      .then(newState => this.setState(newState))
+      .catch(err => this.setState({ isLoading: false, error: err.message }));
   };
   render() {
     const {
@@ -67,6 +72,9 @@ class App extends Component {
           </form>
         </div>
         {this.state.isLoading ? <p>Loading...</p> : null}
+        {this.state.error ? (
+          <p style={{ color: "red" }}>{this.state.error}</p>
+        ) : null}
         <ResultsTable {...props} />
       </div>
     );
