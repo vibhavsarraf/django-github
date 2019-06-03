@@ -23,9 +23,9 @@ class App extends Component {
     e.preventDefault();
     const { url } = this.state;
     axios
-      .post("http://localhost:8000/issues/api/", { url })
+      .post(apiUrl, { url })
       .then(response => {
-        if (response.status === 500) throw new Error("API Error");
+        if (response.status >= 400) throw new Error("API Error");
         let data = response.data;
         if (data.error) throw new Error("Improper Request. Check Git Url.");
         const newState = {
