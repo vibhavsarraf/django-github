@@ -65,6 +65,7 @@ class App extends Component {
                 name="url"
                 onChange={this.onChange}
                 value={this.state.url}
+                placeholder="Ex: github.com/elixir-lang/elixir"
               />
             </div>
             <div className="form-group">
