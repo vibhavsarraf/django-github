@@ -2,7 +2,10 @@ import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import ResultsTable from "./ResultsTable";
-
+const apiUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000/issues/api/"
+    : "https://vgithub.herokuapp.com/issues/api/";
 class App extends Component {
   state = {
     url: "",

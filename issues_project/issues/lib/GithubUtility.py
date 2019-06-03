@@ -10,14 +10,14 @@ class GithubUtility:
             self.user = info[1]
             self.project = info[2]
         except IndexError:
-            raise Exception('Wrong Url format')
+            raise Exception('Wrong Url format given to GithubUrl constructor')
 
     def __init__(self, url=None, user=None, project=None):
         if url:
             self._parseGithubUrl(url)
         else:
             if(not user or not project):
-                raise Exception('Improper request')
+                raise Exception('Improper GithubUrl constructor call')
             self.user = user
             self.project = project
 

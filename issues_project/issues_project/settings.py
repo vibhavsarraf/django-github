@@ -25,7 +25,7 @@ SECRET_KEY = 'ziak*9((mi2f-eqlbj32f8dt%gxtb6#21x5#ps=zc28rok)iqp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
